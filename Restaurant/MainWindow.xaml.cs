@@ -27,15 +27,36 @@ namespace Restaurant
 
         public MainWindow()
         {
+            
             InitializeComponent();
-
+            
             GetData();
             SetupSettings();
-
-
-
+            
+            SetAvailibleTables();
 
         }
+
+        public void SetAvailibleTables()
+        {
+            foreach (var item in currentSettings.availibleTime())
+            {
+                int a = currentSettings.tables[int.Parse(personsBox.SelectedValue.ToString())];
+                foreach(var l in lunchList)
+                {
+                    if ((int.Parse(personsBox.SelectedValue.ToString()) == l.persons)&&(dateBox.SelectedValue.ToString() == l.date) && (currentSettings.getTimeNum(item) < currentSettings.getTimeNum(l.time) + currentSettings.getTimeNum(currentSettings.waitTime)) && (currentSettings.getTimeNum(l.time) < currentSettings.getTimeNum(item) + currentSettings.getTimeNum(currentSettings.waitTime)))
+                        a -= 1;
+                   
+                }
+                if (a<=0)
+                {
+                    timeBox.Items.Remove(item);
+                    timeBox.SelectedIndex = 0;
+                }
+            }
+        }
+
+
 
         public void SetupSettings()
         {
@@ -61,6 +82,8 @@ namespace Restaurant
                 sr.Close();
                 fs.Close();
 
+                
+
                 foreach(var item in currentSettings.availibleTime())
                 {
                     timeBox.Items.Add(item);
@@ -78,6 +101,8 @@ namespace Restaurant
                     personsBox.Items.Add(item);
                 }
                 personsBox.SelectedItem = currentSettings.availiblePersons()[0];
+
+                
 
             }
             
@@ -137,6 +162,7 @@ namespace Restaurant
                     Lunch l = new Lunch(dateBox.SelectedValue.ToString(), timeBox.SelectedValue.ToString(), nameBox.Text, phoneBox.Text, int.Parse(personsBox.SelectedValue.ToString()));
                     lunchList.Add(l);
                     RewriteData();
+
                 }
 
                 else
@@ -149,7 +175,54 @@ namespace Restaurant
             {
                 MessageBox.Show("Ошибка введенных данных!");
             }
+            timeBox.Items.Clear();
+            foreach (var item in currentSettings.availibleTime())
+            {
+                timeBox.Items.Add(item);
+            }
+            timeBox.SelectedItem = currentSettings.availibleTime()[0];
 
+            SetAvailibleTables();
+
+        }
+
+        private void dateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+                timeBox.Items.Clear();
+                foreach (var item in currentSettings.availibleTime())
+                {
+                    timeBox.Items.Add(item);
+                }
+                timeBox.SelectedItem = currentSettings.availibleTime()[0];
+            try
+            {
+                SetAvailibleTables();
+            }
+            catch
+            {
+
+            }
+            
+
+        }
+
+        private void timeBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+        }
+
+        private void personsBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            timeBox.Items.Clear();
+            foreach (var item in currentSettings.availibleTime())
+            {
+                timeBox.Items.Add(item);
+            }
+            timeBox.SelectedItem = currentSettings.availibleTime()[0];
+
+            SetAvailibleTables();
         }
     }
 }
