@@ -29,12 +29,64 @@ namespace Restaurant
         {
             
             InitializeComponent();
+
+            HideEditInterface();
             
+            
+
+
             GetData();
             SetupSettings();
             
             SetAvailibleTables();
 
+            foreach (var item in lunchList)
+            {
+                listBox.Items.Add(item);
+            }
+
+        }
+
+        public void HideEditInterface()
+        {
+            returnButton.Visibility = Visibility.Hidden;
+            listBox.Visibility = Visibility.Hidden;
+            deleteButton.Visibility = Visibility.Hidden;
+        }
+
+        public void HideStandardInterface()
+        {
+            timeBox.Visibility = Visibility.Hidden;
+            dateBox.Visibility = Visibility.Hidden;
+            label.Visibility = Visibility.Hidden;
+            phoneLabel.Visibility = Visibility.Hidden;
+            nameLabel.Visibility = Visibility.Hidden;
+            nameBox.Visibility = Visibility.Hidden;
+            phoneBox.Visibility = Visibility.Hidden;
+            personsBox.Visibility = Visibility.Hidden;
+            completeButton.Visibility = Visibility.Hidden;
+            adminButton.Visibility = Visibility.Hidden;
+        }
+
+        public void ShowEditInterface()
+        {
+            returnButton.Visibility = Visibility.Visible;
+            listBox.Visibility = Visibility.Visible;
+            deleteButton.Visibility = Visibility.Visible;
+        }
+
+        public void ShowStandardInterface()
+        {
+            timeBox.Visibility = Visibility.Visible;
+            dateBox.Visibility = Visibility.Visible;
+            label.Visibility = Visibility.Visible;
+            phoneLabel.Visibility = Visibility.Visible;
+            nameLabel.Visibility = Visibility.Visible;
+            nameBox.Visibility = Visibility.Visible;
+            phoneBox.Visibility = Visibility.Visible;
+            personsBox.Visibility = Visibility.Visible;
+            completeButton.Visibility = Visibility.Visible;
+            adminButton.Visibility = Visibility.Visible;
         }
 
         public void SetAvailibleTables()
@@ -149,8 +201,13 @@ namespace Restaurant
 
         private void adminButton_Click(object sender, RoutedEventArgs e)
         {
-           
+            HideStandardInterface();
+            ShowEditInterface();
         }
+
+
+
+        
 
         private void completeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -223,6 +280,20 @@ namespace Restaurant
             timeBox.SelectedItem = currentSettings.availibleTime()[0];
 
             SetAvailibleTables();
+        }
+
+        private void returnButton_Click(object sender, RoutedEventArgs e)
+        {
+            HideEditInterface();
+            ShowStandardInterface();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            Object d = listBox.SelectedItem;
+            listBox.Items.Remove(d);
+            lunchList.Remove((Lunch)d);
+            RewriteData();
         }
     }
 }

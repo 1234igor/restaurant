@@ -19,9 +19,32 @@
         <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="25" Margin="65,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="174"/>
         <Label x:Name="nameLabel" Content="Имя" HorizontalAlignment="Left" Height="30" Margin="61,168,0,0" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="phoneLabel" Content="Телефон" HorizontalAlignment="Left" Height="36" Margin="62,222,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button x:Name="adminButton" Content="admin" HorizontalAlignment="Left" Height="22" Margin="451,10,0,0" VerticalAlignment="Top" Width="58" Click="adminButton_Click"/>
+        <Button x:Name="adminButton" Content="edit" HorizontalAlignment="Left" Height="22" Margin="451,10,0,0" VerticalAlignment="Top" Width="58" Click="adminButton_Click"/>
         <Button x:Name="completeButton" Content="complete" HorizontalAlignment="Left" Height="79" Margin="288,192,0,0" VerticalAlignment="Top" Width="106" Click="completeButton_Click"/>
         <Label x:Name="label" Content="Количество мест" HorizontalAlignment="Left" Height="36" Margin="356,117,0,0" VerticalAlignment="Top" Width="135"/>
+        <Button x:Name="returnButton" Content="return" HorizontalAlignment="Left" Height="22" Margin="451,10,0,0" VerticalAlignment="Top" Width="58" Click="returnButton_Click"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="192" Margin="62,54,0,0" VerticalAlignment="Top" Width="343">
+            <ListBox.ItemTemplate>
+                <DataTemplate DataType="local:Table">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                            <ColumnDefinition Width="70"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" TextAlignment="Center" Text="{Binding date}"/>
+                        <TextBlock Grid.Column="1" TextAlignment="Center" Text="{Binding time}"/>
+                        <TextBlock Grid.Column="2" TextAlignment="Center" Text="{Binding name}"/>
+                        <TextBlock Grid.Column="3" TextAlignment="Center" Text="{Binding phone}"/>
+                        <TextBlock Grid.Column="4" TextAlignment="Center" Text="{Binding persons}"/>
+         
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="deleteButton" Content="delete" HorizontalAlignment="Left" Height="30" Margin="435,168,0,0" VerticalAlignment="Top" Width="74" Click="deleteButton_Click"/>
 
     </Grid>
 </Window>
