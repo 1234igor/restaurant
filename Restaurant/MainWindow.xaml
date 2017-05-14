@@ -22,8 +22,8 @@
         <Button x:Name="adminButton" Content="edit" HorizontalAlignment="Left" Height="22" Margin="451,10,0,0" VerticalAlignment="Top" Width="58" Click="adminButton_Click"/>
         <Button x:Name="completeButton" Content="complete" HorizontalAlignment="Left" Height="79" Margin="288,192,0,0" VerticalAlignment="Top" Width="106" Click="completeButton_Click"/>
         <Label x:Name="label" Content="Количество мест" HorizontalAlignment="Left" Height="36" Margin="356,117,0,0" VerticalAlignment="Top" Width="135"/>
-        <Button x:Name="returnButton" Content="return" HorizontalAlignment="Left" Height="22" Margin="451,10,0,0" VerticalAlignment="Top" Width="58" Click="returnButton_Click"/>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="192" Margin="62,54,0,0" VerticalAlignment="Top" Width="343">
+        <Button x:Name="returnButton" Content="return" HorizontalAlignment="Left" Height="22" Margin="10,10,0,0" VerticalAlignment="Top" Width="58" Click="returnButton_Click"/>
+        <ListBox x:Name="listBox"  HorizontalAlignment="Left" Height="192" Margin="62,54,0,0" VerticalAlignment="Top" Width="343">
             <ListBox.ItemTemplate>
                 <DataTemplate DataType="local:Table">
                     <Grid>
@@ -45,6 +45,12 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button x:Name="deleteButton" Content="delete" HorizontalAlignment="Left" Height="30" Margin="435,168,0,0" VerticalAlignment="Top" Width="74" Click="deleteButton_Click"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="22" Margin="122,165,0,0" VerticalAlignment="Top" Width="210"/>
+        <Button x:Name="passwordButton" Content="go" HorizontalAlignment="Left" Height="22" Margin="345,165,0,0" VerticalAlignment="Top" Width="60" Click="passwordButton_Click"/>
+        <Label x:Name="passwordLabel" Content="Password:" HorizontalAlignment="Left" Height="27" Margin="122,126,0,0" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="searchLabel" Content="" HorizontalAlignment="Left" Height="25" Margin="62,263,0,0" VerticalAlignment="Top" Width="177"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="28" Margin="65,283,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="283"/>
+        <Button x:Name="searchButton" Content="search" HorizontalAlignment="Left" Height="28" Margin="370,283,0,0" VerticalAlignment="Top" Width="80" Click="searchButton_Click"/>
 
     </Grid>
 </Window>

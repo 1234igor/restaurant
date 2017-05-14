@@ -13,6 +13,13 @@ namespace Restaurant
         private string _waitTime;
         private int _days;
         private Dictionary<int, int> _tables;
+        private string _pass;
+
+        public string pass
+        {
+            get { return _pass; }
+            set { _pass = value; }
+        }
 
         public string openTime
         {
