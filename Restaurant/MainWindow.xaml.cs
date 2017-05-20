@@ -23,6 +23,7 @@ namespace Restaurant
     {
         public List<Lunch> lunchList = new List<Lunch>();
         public Settings currentSettings = new Settings();
+        
 
 
 
@@ -33,9 +34,9 @@ namespace Restaurant
 
             HideEditInterface();
             HideLoginInterface();
+
+
             
-
-
             GetData();
             SetupSettings();
 
@@ -77,6 +78,7 @@ namespace Restaurant
             searchBox.Visibility = Visibility.Hidden;
             searchButton.Visibility = Visibility.Hidden;
             searchLabel.Visibility = Visibility.Hidden;
+            editButton.Visibility = Visibility.Hidden;
         }
 
         public void HideStandardInterface()
@@ -91,6 +93,9 @@ namespace Restaurant
             personsBox.Visibility = Visibility.Hidden;
             completeButton.Visibility = Visibility.Hidden;
             adminButton.Visibility = Visibility.Hidden;
+            dateLabel.Visibility = Visibility.Hidden;
+            timeLabel.Visibility = Visibility.Hidden;
+
         }
 
         public void ShowEditInterface()
@@ -101,6 +106,7 @@ namespace Restaurant
             searchBox.Visibility = Visibility.Visible;
             searchButton.Visibility = Visibility.Visible;
             searchLabel.Visibility = Visibility.Visible;
+            editButton.Visibility = Visibility.Visible;
         }
 
         public void ShowStandardInterface()
@@ -115,6 +121,8 @@ namespace Restaurant
             personsBox.Visibility = Visibility.Visible;
             completeButton.Visibility = Visibility.Visible;
             adminButton.Visibility = Visibility.Visible;
+            timeLabel.Visibility = Visibility.Visible;
+            dateLabel.Visibility = Visibility.Visible;
         }
 
         public void ShowLoginInterface()
@@ -251,7 +259,8 @@ namespace Restaurant
 
             HideStandardInterface();
             ShowLoginInterface();
-            //ShowEditInterface();
+
+            
         }
 
 
@@ -263,7 +272,7 @@ namespace Restaurant
 
             try
             {
-                if ((dateBox.SelectedValue.ToString().IndexOf('|')==-1) &&  (timeBox.SelectedValue.ToString().IndexOf('|')== -1)  &&  (nameBox.Text.IndexOf('|')==-1) && (phoneBox.Text.IndexOf('|') == -1) && (personsBox.SelectedValue.ToString().IndexOf('|') == -1))
+                if ((dateBox.SelectedValue.ToString().IndexOf('|')==-1) &&  (timeBox.SelectedValue.ToString().IndexOf('|')== -1)  &&  (nameBox.Text.IndexOf('|')==-1) && (phoneBox.Text.IndexOf('|') == -1) && (personsBox.SelectedValue.ToString().IndexOf('|') == -1) && !string.IsNullOrWhiteSpace(nameBox.Text) && !string.IsNullOrWhiteSpace(phoneBox.Text))
                 {
                     Lunch l = new Lunch(dateBox.SelectedValue.ToString(), timeBox.SelectedValue.ToString(), nameBox.Text, phoneBox.Text, int.Parse(personsBox.SelectedValue.ToString()));
                     lunchList.Add(l);
@@ -278,6 +287,7 @@ namespace Restaurant
 
                     nameBox.Clear();
                     phoneBox.Clear();
+   
                 }
 
                 else
@@ -288,7 +298,7 @@ namespace Restaurant
             }
             catch
             {
-                MessageBox.Show("Ошибка введенных данных!");
+                MessageBox.Show("Ошибка введенных данных");
             }
             timeBox.Items.Clear();
             foreach (var item in currentSettings.availibleTime())
@@ -298,6 +308,7 @@ namespace Restaurant
             timeBox.SelectedItem = currentSettings.availibleTime()[0];
 
             SetAvailibleTables();
+            adminButton.Visibility = Visibility.Visible;
 
         }
 
@@ -402,6 +413,36 @@ namespace Restaurant
                 else
                     searchLabel.Content = "Не найдено";
             }
+        }
+
+        private void editButton_Click(object sender, RoutedEventArgs e)
+        {
+            Object d = listBox.SelectedItem;
+            listBox.Items.Remove(d);
+            lunchList.Remove((Lunch)d);
+            RewriteData();
+
+           
+            
+            timeBox.Items.Clear();
+            foreach (var item in currentSettings.availibleTime())
+            {
+                timeBox.Items.Add(item);
+            }
+            timeBox.SelectedItem = currentSettings.availibleTime()[0];
+
+            SetAvailibleTables();
+
+            nameBox.Text = ((Lunch)d).name;
+            phoneBox.Text = ((Lunch)d).phone;
+            dateBox.SelectedItem = ((Lunch)d).date;
+            timeBox.SelectedItem = ((Lunch)d).time;
+            personsBox.SelectedItem = ((Lunch)d).persons;
+
+            HideEditInterface();
+            ShowStandardInterface();
+
+            adminButton.Visibility = Visibility.Hidden;
         }
     }
 }
