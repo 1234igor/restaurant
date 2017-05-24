@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -217,6 +218,20 @@ namespace Restaurant
 
         public void GetData()
         {
+            try
+            {
+                BinaryFormatter binFormat = new BinaryFormatter();
+                using (FileStream fs = new FileStream(@"../../data.txt", FileMode.Open, FileAccess.Read))
+                {
+                    lunchList = binFormat.Deserialize(fs) as List<Lunch>;
+                }
+            }
+            catch
+            {
+
+            }
+            
+            /*
             using (FileStream fs = new FileStream(@"../../data.txt", FileMode.Open, FileAccess.Read))
             {
                 string[] data;
@@ -233,10 +248,17 @@ namespace Restaurant
                 sr.Close();
                 fs.Close();
             }
+            */
         }
 
         public void RewriteData()
         {
+            BinaryFormatter binFormat = new BinaryFormatter();
+            using (FileStream fs = new FileStream(@"../../data.txt", FileMode.Create, FileAccess.Write))
+            {
+                binFormat.Serialize(fs, lunchList);
+            }
+            /*
             using (FileStream fs = new FileStream(@"../../data.txt", FileMode.Create, FileAccess.Write))
             {
 
@@ -251,6 +273,7 @@ namespace Restaurant
                 sr.Close();
                 fs.Close();
             }
+            */
         }
 
 

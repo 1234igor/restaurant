@@ -7,6 +7,10 @@
         mc:Ignorable="d"
         Title="Restaurant" Height="300" Width="500" ResizeMode="NoResize">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="203*"/>
+            <RowDefinition Height="69*"/>
+        </Grid.RowDefinitions>
         <ComboBox x:Name="dateBox" HorizontalAlignment="Left" Margin="92,73,0,0" VerticalAlignment="Top" Width="100" SelectionChanged="dateBox_SelectionChanged" Height="24">
 
         </ComboBox>
@@ -16,11 +20,11 @@
         <ComboBox x:Name="timeBox" HorizontalAlignment="Left" Height="24" Margin="222,73,0,0" VerticalAlignment="Top" Width="60" SelectionChanged="timeBox_SelectionChanged">
         </ComboBox>
         <TextBox x:Name="nameBox" HorizontalAlignment="Left" Height="24" Margin="92,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
-        <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="24" Margin="92,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190"/>
+        <TextBox x:Name="phoneBox" HorizontalAlignment="Left" Height="24" Margin="92,192,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" Grid.RowSpan="2"/>
         <Label x:Name="nameLabel" Content="Имя" HorizontalAlignment="Left" Height="30" Margin="92,110,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="phoneLabel" Content="Телефон" HorizontalAlignment="Left" Height="36" Margin="92,170,0,0" VerticalAlignment="Top" Width="92"/>
-        <Button x:Name="adminButton" Content="Записи" Margin="0,18,30,0" Click="adminButton_Click" HorizontalAlignment="Right" Width="60" Height="24" VerticalAlignment="Top"/>
-        <Button x:Name="completeButton" Content="Ок" HorizontalAlignment="Left" Height="84" Margin="312,133,0,0" VerticalAlignment="Top" Width="40" Click="completeButton_Click"/>
+        <Label x:Name="phoneLabel" Content="Телефон" HorizontalAlignment="Left" Height="36" Margin="92,170,0,0" VerticalAlignment="Top" Width="92" Grid.RowSpan="2"/>
+        <Button x:Name="adminButton" Content="Записи" Margin="0,18,29.667,0" Click="adminButton_Click" HorizontalAlignment="Right" Width="60" Height="24" VerticalAlignment="Top"/>
+        <Button x:Name="completeButton" Content="Ок" HorizontalAlignment="Left" Height="84" Margin="312,133,0,0" VerticalAlignment="Top" Width="40" Click="completeButton_Click" Grid.RowSpan="2"/>
         <Label x:Name="label" Content="Места" HorizontalAlignment="Left" Height="36" Margin="312,50,0,0" VerticalAlignment="Top" Width="135"/>
         <Button x:Name="returnButton" Content="Назад" Margin="30,18,0,0" Click="returnButton_Click" Background="#FFDDDDDD" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="60"/>
         <ListBox x:Name="listBox"  HorizontalAlignment="Left" Height="120" Margin="30,54,0,0" VerticalAlignment="Top" Width="357">
@@ -46,11 +50,11 @@
         </ListBox>
         <Button x:Name="deleteButton" Content="Удалить" Height="24" Margin="405,120,0,0" VerticalAlignment="Top" Click="deleteButton_Click" HorizontalAlignment="Left" Width="60"/>
         <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="24" Margin="136,110,0,0" VerticalAlignment="Top" Width="156" RenderTransformOrigin="0.792,1.861"/>
-        <Button x:Name="passwordButton" Content="Ок" HorizontalAlignment="Left" Height="24" Margin="310,111,0,0" VerticalAlignment="Top" Width="60" Click="passwordButton_Click"/>
+        <Button x:Name="passwordButton" Content="Ок" HorizontalAlignment="Left" Height="24" Margin="312,110,0,0" VerticalAlignment="Top" Width="60" Click="passwordButton_Click"/>
         <Label x:Name="passwordLabel" Content="Пароль:" HorizontalAlignment="Left" Height="27" Margin="136,88,0,0" VerticalAlignment="Top" Width="140"/>
-        <Label x:Name="searchLabel" Content="" HorizontalAlignment="Left" Height="25" Margin="32,197,0,0" VerticalAlignment="Top" Width="177"/>
-        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="24" Margin="33,217,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="260"/>
-        <Button x:Name="searchButton" Content="Найти" HorizontalAlignment="Left" Height="24" Margin="312,217,0,0" VerticalAlignment="Top" Width="60" Click="searchButton_Click"/>
+        <Label x:Name="searchLabel" Content="" HorizontalAlignment="Left" Height="25" Margin="32,197,0,0" VerticalAlignment="Top" Width="177" Grid.RowSpan="2"/>
+        <TextBox x:Name="searchBox" HorizontalAlignment="Left" Height="24" Margin="30,13.333,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="262" Grid.Row="1"/>
+        <Button x:Name="searchButton" Content="Найти" HorizontalAlignment="Left" Height="24" Margin="312,13.667,0,0" VerticalAlignment="Top" Width="60" Click="searchButton_Click" Grid.Row="1"/>
         <Button x:Name="editButton" Content="Изменить" HorizontalAlignment="Left" Height="24" Margin="405,82,0,0" VerticalAlignment="Top" Width="60" Click="editButton_Click"/>
         <Label x:Name="timeLabel" Content="Время" HorizontalAlignment="Left" Height="36" Margin="222,50,0,0" VerticalAlignment="Top" Width="135"/>
         <Label x:Name="dateLabel" Content="Дата" HorizontalAlignment="Left" Height="36" Margin="92,50,0,0" VerticalAlignment="Top" Width="76"/>

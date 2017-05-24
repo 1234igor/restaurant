@@ -1,4 +1,4 @@
-RestaurantPass
+HSEPASSWORD
 12:00
 21:00
 1:00
